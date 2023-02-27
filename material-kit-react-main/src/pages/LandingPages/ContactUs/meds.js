@@ -25,23 +25,22 @@ import BackgroundBlogCard from "examples/Cards/BlogCards/BackgroundBlogCard";
 import pluss from "assets/images/imgmed.jpg";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const api = axios.create({
   baseURL: "http://localhost:4000/api",
 });
-const [myVariable, setMyVariable] = useState("");
-function Meds({ myVariable }) {
-  const navigate = useNavigate();
+
+function Meds() {
   const [listmedicament, setListmedicament] = useState([]);
+  const navigate = useNavigate();
+
   const handleClick = async (id) => {
     const res = await api.get(`/disponibilite/${id}`);
-    const { dispid } = res.data;
-    setMyVariable(res.data);
-    console.log(dispid);
-    navigate("/description", { state: { data: res.data.dispid } });
+    console.log(res.data);
+    navigate("/description", { state: res.data });
   };
-  console.log(myVariable);
+
   useEffect(() => {
     const allmed = async () => {
       await api.get("/medicament").then((res) => {
@@ -82,16 +81,14 @@ function Meds({ myVariable }) {
                     description={e.description}
                     action={{
                       type: "internal",
-                      route: "/somewhere",
+                      route: "/description",
                       color: "info",
-                      label: "Read More",
+                      label: "",
                     }}
                   />
-                  <Link to="/description">
-                    <button type="submit" onClick={() => handleClick(e._id)}>
-                      Click Me
-                    </button>
-                  </Link>
+                  <button type="submit" onClick={() => handleClick(e._id)}>
+                    Read More
+                  </button>
                 </MKBox>
               </Grid>
             ))}

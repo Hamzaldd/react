@@ -31,9 +31,13 @@ import routes from "routes";
 import footerRoutes from "footer.routes";
 // Image
 import bgImage from "assets/images/imgg.jpg";
+import { useLocation } from "react-router-dom";
 import Description from "./description";
 
 function DescriptionPage() {
+  const location = useLocation();
+  console.log("location", location);
+  console.log("data", location.state);
   return (
     <>
       <DefaultNavbar routes={routes} transparent light />
@@ -71,7 +75,7 @@ function DescriptionPage() {
               },
             })}
           >
-            Find Your Pharmacy
+            Find Your {location.state.dispid[0].medicament_id.nom}
           </MKTypography>
         </Grid>
       </MKBox>

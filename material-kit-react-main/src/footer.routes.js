@@ -74,16 +74,16 @@ export default {
   ],
   copyright: (
     <MKTypography variant="button" fontWeight="regular">
-      All rights reserved. Copyright &copy; {date} Material Kit by{" "}
+      All rights reserved. Copyright &copy; {date} Digital Pharmacy by{" "}
       <MKTypography
         component="a"
-        href="https://www.creative-tim.com"
+        href="/presentation"
         target="_blank"
         rel="noreferrer"
         variant="button"
         fontWeight="regular"
       >
-        Creative Tim
+        Dgital Pharmacy
       </MKTypography>
       .
     </MKTypography>
